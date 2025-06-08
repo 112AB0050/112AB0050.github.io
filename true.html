@@ -165,10 +165,76 @@
             text-align: center;
         }
 
-        .placeholder-text {
+        .presentation-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .presentation-frame {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .presentation-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .youtube-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .youtube-frame {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        .youtube-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .download-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+        .sources-content p {
+            line-height: 1.6;
+            color: #555;
+        }
+        .sources-list {
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+        .sources-list li {
+            margin-bottom: 15px;
+        }
+        .sources-list a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .sources-list a:hover {
+            text-decoration: underline;
+        }
+        .sources-list p {
+            margin: 5px 0 0 0;
             color: #666;
-            font-style: italic;
-            font-size: 1.1rem;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -194,11 +260,15 @@
                         <p>這項技術可以讓任何人的臉孔或聲音被合成到其他內容中，創造出極為逼真但完全虛假的媒體內容。</p>
                         <div class="presentation-container">
                             <div class="presentation-frame">
-                                <iframe src="https://www.example.com/sample-presentation.pdf" title="深偽技術簡報"></iframe>
+                                <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https%3A%2F%2F112ab0050.github.io%2FAI%25E8%25B3%2587%25E5%25AE%2589.pptx" title="深偽技術簡報"></iframe>
                             </div>
-                            <a href="https://www.example.com/sample-presentation.pdf" download class="download-btn">下載簡報</a>
+                            <a href="https://112ab0050.github.io/AI%E8%B3%87%E5%AE%89.pptx" download="AI資安.pptx" class="download-btn">下載簡報</a>
                         </div>
-                        <p class="placeholder-text">（此處可以加入更多詳細介紹內容）</p>
+                        <div class="youtube-container">
+                            <div class="youtube-frame">
+                                <iframe src="https://www.youtube.com/embed/RWdL5f_7kLA" title="深偽技術相關影片" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -215,6 +285,48 @@
                         <h2>參考資料來源</h2>
                         <p class="placeholder-text">此處將列出相關的學術文獻、新聞報導、研究報告等資料來源</p>
                         <p class="placeholder-text">提供讀者進一步深入了解深偽技術的管道</p>
+                        <ol class="sources-list">
+                        <li>
+                            <a href="https://zh.wikipedia.org/zh-tw/%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9C" target="_blank">生成對抗網絡 - 維基百科</a>
+                            <p>介紹生成對抗網絡（GAN）的基本原理，這是深偽技術的核心技術之一。</p>
+                        </li>
+                        <li>
+                            <a href="https://zh.wikipedia.org/zh-tw/%E6%B7%B1%E4%BC%AA%E6%8A%80%E6%9C%AF" target="_blank">深偽技術 - 維基百科</a>
+                            <p>詳細說明深偽技術的定義、發展歷史及應用場景。</p>
+                        </li>
+                        <li>
+                            <a href="https://zh.wikipedia.org/zh-tw/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD" target="_blank">人工智慧 - 維基百科</a>
+                            <p>提供人工智慧的廣泛背景知識，涵蓋深偽技術所依賴的機器學習技術。</p>
+                        </li>
+                        <li>
+                            <a href="https://zh.wikipedia.org/zh-tw/%E7%B6%B2%E7%AB%99" target="_blank">網站 - 維基百科</a>
+                            <p>介紹網站的技術基礎，有助於理解深偽技術在網頁應用中的實現方式。</p>
+                        </li>
+                        <li>
+                            <a href="https://www.ithome.com.tw/news/139740" target="_blank">AI換臉技術的隱憂與挑戰 - iThome</a>
+                            <p>探討深偽技術的倫理問題及其對社會的潛在影響。</p>
+                        </li>
+                        <li>
+                            <a href="https://www.toolify.ai/tw/ai-news-tw/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8deepfacelab%E5%90%88%E6%88%90%E6%B7%B1%E5%BA%A6%E5%81%BD%E9%80%A0-%E5%8F%B0%E7%81%A3%E5%B0%88%E6%A5%AD%E6%95%99%E5%AD%B8-1178865" target="_blank">如何使用DeepFaceLab合成深度偽造 - Toolify</a>
+                            <p>提供使用DeepFaceLab進行深偽製作的實用教學，適合技術愛好者。</p>
+                        </li>
+                        <li>
+                            <a href="https://www.ithome.com.tw/news/140660" target="_blank">深偽技術的資安挑戰 - iThome</a>
+                            <p>分析深偽技術在資訊安全領域的應用與風險。</p>
+                        </li>
+                        <li>
+                            <a href="https://safe-software.net/synthesia-ai/" target="_blank">Synthesia AI - Safe Software</a>
+                            <p>介紹Synthesia AI平台，如何利用AI生成逼真的影片內容。</p>
+                        </li>
+                        <li>
+                            <a href="https://tenten.co/learning/runway-gen3-alpha-review/" target="_blank">Runway Gen3 Alpha 評測 - Tenten</a>
+                            <p>評測Runway Gen3 Alpha，一款用於生成AI內容的工具，與深偽技術相關。</p>
+                        </li>
+                        <li>
+                            <a href="https://zhuanlan.zhihu.com/p/81691265" target="_blank">Deepfake技術原理與應用 - 知乎</a>
+                            <p>深入解析深偽技術的原理、實現方式及其應用場景。</p>
+                        </li>
+                        </ol>
                     </div>
                 </div>
             </div>
