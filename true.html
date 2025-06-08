@@ -236,6 +236,117 @@
             color: #666;
             font-size: 0.9em;
         }
+        .placeholder-text {
+            color: #666;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .question-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .question-item h3 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: flex;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #4682b4;
+            color: #4682b4;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 80px;
+        }
+
+        .option-btn:hover {
+            background: #f0f8ff;
+            transform: translateY(-2px);
+        }
+
+        .option-btn.selected {
+            background: #4682b4;
+            color: white;
+        }
+
+        .option-btn.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+
+        .option-btn.incorrect {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+
+        .certificate-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .download-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-btn:hover:not(.disabled) {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .download-btn.disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .complete-message {
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+
+
     </style>
 </head>
 <body>
@@ -275,8 +386,56 @@
                 <div id="quiz" class="tab-content">
                     <div class="quiz-content">
                         <h2>深偽技術認知測驗</h2>
-                        <p class="placeholder-text">測驗功能將在此處實作</p>
-                        <p class="placeholder-text">可以包含選擇題、是非題等形式來測試使用者對深偽技術的了解程度</p>
+                        <div class="quiz-container">
+                            <div class="question-item">
+                                <h3>1. 深偽技術只能用於製作影片內容。</h3>
+                                <div class="options">
+                                    <button class="option-btn" data-question="1" data-answer="true" onclick="selectAnswer(1, true, this)">True</button>
+                                    <button class="option-btn" data-question="1" data-answer="false" onclick="selectAnswer(1, false, this)">False</button>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <h3>2. AI技術的進步使得深偽內容越來越難以辨識。</h3>
+                                <div class="options">
+                                    <button class="option-btn" data-question="2" data-answer="true" onclick="selectAnswer(2, true, this)">True</button>
+                                    <button class="option-btn" data-question="2" data-answer="false" onclick="selectAnswer(2, false, this)">False</button>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <h3>3. 深偽技術沒有任何正面用途。</h3>
+                                <div class="options">
+                                    <button class="option-btn" data-question="3" data-answer="true" onclick="selectAnswer(3, true, this)">True</button>
+                                    <button class="option-btn" data-question="3" data-answer="false" onclick="selectAnswer(3, false, this)">False</button>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <h3>4. 檢測深偽內容需要專業的技術工具。</h3>
+                                <div class="options">
+                                    <button class="option-btn" data-question="4" data-answer="true" onclick="selectAnswer(4, true, this)">True</button>
+                                    <button class="option-btn" data-question="4" data-answer="false" onclick="selectAnswer(4, false, this)">False</button>
+                                </div>
+                            </div>
+
+                            <div class="question-item">
+                                <h3>5. 深偽技術的發展不會影響新聞媒體的可信度。</h3>
+                                <div class="options">
+                                    <button class="option-btn" data-question="5" data-answer="true" onclick="selectAnswer(5, true, this)">True</button>
+                                    <button class="option-btn" data-question="5" data-answer="false" onclick="selectAnswer(5, false, this)">False</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="certificate-section">
+                            <button id="downloadBtn" class="download-btn disabled" onclick="downloadCertificate()">
+                                下載測驗證書
+                            </button>
+                            <p class="complete-message" id="completeMessage" style="display: none;">
+                                恭喜！您已完成所有題目，可以下載證書了！
+                            </p>
+                        </div>
                     </div>
                 </div>
 
@@ -364,6 +523,69 @@
                 this.style.transform = 'translateX(0) scale(1)';
             });
         });
+        // Quiz functionality
+        const correctAnswers = [true, true, false, true, false]; // TTFTF
+        let userAnswers = [null, null, null, null, null];
+
+        function selectAnswer(questionNum, answer, button) {
+            const questionIndex = questionNum - 1;
+            const isCorrect = answer === correctAnswers[questionIndex];
+            
+            // 清除該題目的所有選項狀態
+            const allOptionsForQuestion = document.querySelectorAll(`[data-question="${questionNum}"]`);
+            allOptionsForQuestion.forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // 設置當前選擇的狀態
+            button.classList.add('selected');
+            if (isCorrect) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('incorrect');
+            }
+            
+            // 記錄用戶答案
+            userAnswers[questionIndex] = answer;
+            
+            // 檢查是否全部答對
+            checkCompletion();
+        }
+
+        function checkCompletion() {
+            let allCorrect = true;
+            let allAnswered = true;
+            
+            for (let i = 0; i < correctAnswers.length; i++) {
+                if (userAnswers[i] === null) {
+                    allAnswered = false;
+                    break;
+                }
+                if (userAnswers[i] !== correctAnswers[i]) {
+                    allCorrect = false;
+                }
+            }
+            
+            const downloadBtn = document.getElementById('downloadBtn');
+            const completeMessage = document.getElementById('completeMessage');
+            
+            if (allAnswered && allCorrect) {
+                downloadBtn.classList.remove('disabled');
+                downloadBtn.style.background = '#28a745';
+                completeMessage.style.display = 'block';
+            } else {
+                downloadBtn.classList.add('disabled');
+                downloadBtn.style.background = '#6c757d';
+                completeMessage.style.display = 'none';
+            }
+        }
+
+        function downloadCertificate() {
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (!downloadBtn.classList.contains('disabled')) {
+                window.open('https://112ab0050.github.io/pass.pdf', '_blank');
+            }
+        }
     </script>
 </body>
 </html>
