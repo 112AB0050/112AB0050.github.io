@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系統警告</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ff0000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .warning-container {
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .virus-alert {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .countdown-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .timer {
+            font-size: 36px;
+            color: #ffff00;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .instruction-text {
+            font-size: 20px;
+            margin-bottom: 40px;
+            font-weight: bold;
+        }
+
+        .clean-button {
+            background-color: #ffff00;
+            color: #ff0000;
+            border: none;
+            padding: 20px 40px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .clean-button:hover {
+            background-color: #fff700;
+            transform: scale(1.05);
+        }
+
+        .clean-button:active {
+            transform: scale(0.95);
+        }
+
+        .urgent-text {
+            color: #ffff00;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-container">
+        <div class="virus-alert">電腦已中病毒!</div>
+        <div class="countdown-text">請在<span class="timer" id="timer">05:00</span>內執行清理病毒程序!</div>
+        <div class="instruction-text">點按以下按鈕後請照著指示進行殺毒程序</div>
+        <button class="clean-button" id="cleanButton">清理病毒</button>
+    </div>
+
+    <script>
+        // 自動全屏功能
+        function enterFullscreen() {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+
+        // 頁面載入後嘗試進入全屏
+        window.addEventListener('load', function() {
+            // 需要用戶互動才能進入全屏，所以監聽第一次點擊
+            document.addEventListener('click', enterFullscreen, { once: true });
+        });
+
+        // 倒數計時器
+        let timeLeft = 300; // 5分鐘 = 300秒
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                // 時間到了可以添加其他效果
+                timerElement.textContent = "00:00";
+                timerElement.style.color = "#ffffff";
+            }
+        }
+
+        // 每秒更新計時器
+        setInterval(updateTimer, 1000);
+
+        // 下載按鈕功能
+        document.getElementById('cleanButton').addEventListener('click', function() {
+            // 創建一個虛擬的PDF內容
+            const pdfContent = `%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+>>
+endobj
+4 0 obj
+<<
+/Length 44
+>>
+stream
+BT
+/F1 12 Tf
+100 700 Td
+(This is a fake virus warning demo) Tj
+ET
+endstream
+endobj
+xref
+0 5
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000209 00000 n 
+trailer
+<<
+/Size 5
+/Root 1 0 R
+>>
+startxref
+301
+%%EOF`;
+
+            // 創建Blob並下載
+            const blob = new Blob([pdfContent], { type: 'application/pdf' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'lossmoney.pdf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            setTimeout(() => {
+                this.textContent = '清理完成！';
+                this.style.backgroundColor = '#00ff00';
+                this.style.color = '#000000';
+                // 關閉網頁
+                setTimeout(() => {
+                    window.close();
+                }, 1000); // 延遲1秒以顯示完成訊息
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
