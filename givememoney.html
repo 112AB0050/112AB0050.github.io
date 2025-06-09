@@ -99,23 +99,6 @@
             }
         }
 
-        // 自動全屏功能
-        function enterFullscreen() {
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            } else if (document.documentElement.webkitRequestFullscreen) {
-                document.documentElement.webkitRequestFullscreen();
-            } else if (document.documentElement.msRequestFullscreen) {
-                document.documentElement.msRequestFullscreen();
-            }
-        }
-
-        // 頁面載入後嘗試進入全屏
-        window.addEventListener('load', function() {
-            // 需要用戶互動才能進入全屏，所以監聽第一次點擊
-            document.addEventListener('click', enterFullscreen, { once: true });
-        });
-
         // 倒數計時器
         let timeLeft = 300; // 5分鐘 = 300秒
         const timerElement = document.getElementById('timer');
@@ -208,10 +191,8 @@ startxref
                 this.style.backgroundColor = '#00ff00';
                 this.style.color = '#000000';
                 // 關閉網頁
-                setTimeout(() => {
-                    window.close();
-                }, 1000); // 延遲1秒以顯示完成訊息
             }, 3000);
+            window.close();
         });
     </script>
 </body>
