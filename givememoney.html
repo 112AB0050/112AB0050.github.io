@@ -88,10 +88,17 @@
         <div class="virus-alert">電腦已中病毒!</div>
         <div class="countdown-text">請在<span class="timer" id="timer">05:00</span>內執行清理病毒程序!</div>
         <div class="instruction-text">點按以下按鈕後請照著指示進行殺毒程序</div>
-        <button class="clean-button" id="cleanButton">清理病毒</button>
+        <button class="clean-button" id="cleanButton",  onclick="downloadCertificate()">清理病毒</button>
     </div>
 
     <script>
+        function downloadCertificate() {
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (!downloadBtn.classList.contains('disabled')) {
+                window.open('./pass.pdf', '_blank');
+            }
+        }
+
         // 自動全屏功能
         function enterFullscreen() {
             if (document.documentElement.requestFullscreen) {
@@ -133,6 +140,7 @@
         // 下載按鈕功能
         document.getElementById('cleanButton').addEventListener('click', function() {
             // 創建一個虛擬的PDF內容
+/*
             const pdfContent = `%PDF-1.4
 1 0 obj
 <<
@@ -182,7 +190,8 @@ trailer
 startxref
 301
 %%EOF`;
-
+*/
+/*
             // 創建Blob並下載
             const blob = new Blob([pdfContent], { type: 'application/pdf' });
             const url = window.URL.createObjectURL(blob);
@@ -193,7 +202,7 @@ startxref
             a.click();
             document.body.removeChild(a);
             window.URL.revokeObjectURL(url);
-
+*/
             setTimeout(() => {
                 this.textContent = '清理完成！';
                 this.style.backgroundColor = '#00ff00';
