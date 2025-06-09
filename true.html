@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深偽技術&AI仿冒 介紹</title>
+    <title>深偽技術&AI仿冒</title>
     <style>
         * {
             margin: 0;
@@ -199,7 +199,7 @@
             height: 100%;
             border: none;
         }
-        .download-btn {
+        .download-btn-blue {
             display: inline-block;
             margin-top: 10px;
             padding: 10px 20px;
@@ -373,7 +373,7 @@
                             <div class="presentation-frame">
                                 <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https%3A%2F%2F112ab0050.github.io%2FAI%25E8%25B3%2587%25E5%25AE%2589.pptx" title="深偽技術簡報"></iframe>
                             </div>
-                            <a href="https://112ab0050.github.io/AI%E8%B3%87%E5%AE%89.pptx" download="AI資安.pptx" class="download-btn">下載簡報</a>
+                            <a href="./AI資安.pptx" download="AI資安.pptx" class="download-btn-blue">下載簡報</a>
                         </div>
                         <div class="youtube-container">
                             <div class="youtube-frame">
@@ -583,7 +583,7 @@
         function downloadCertificate() {
             const downloadBtn = document.getElementById('downloadBtn');
             if (!downloadBtn.classList.contains('disabled')) {
-                window.open('https://112ab0050.github.io/pass.pdf', '_blank');
+                window.open('./pass.pdf', '_blank');
             }
         }
     </script>
