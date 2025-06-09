@@ -88,14 +88,14 @@
         <div class="virus-alert">電腦已中病毒!</div>
         <div class="countdown-text">請在<span class="timer" id="timer">05:00</span>內執行清理病毒程序!</div>
         <div class="instruction-text">點按以下按鈕後請照著指示進行殺毒程序</div>
-        <button class="clean-button" id="cleanButton",  onclick="downloadCertificate()">清理病毒</button>
+        <button class="clean-button" id="cleanButton",  onclick="openpdf()">清理病毒</button>
     </div>
 
     <script>
-        function downloadCertificate() {
-            const downloadBtn = document.getElementById('downloadBtn');
+        function openpdf() {
+            const downloadBtn = document.getElementById('cleanButton');
             if (!downloadBtn.classList.contains('disabled')) {
-                window.open('./pass.pdf', '_blank');
+                window.open('./lossmoney.pdf', '_blank');
             }
         }
 
