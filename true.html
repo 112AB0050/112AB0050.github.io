@@ -373,7 +373,7 @@
                             <div class="presentation-frame">
                                 <iframe src="https://view.officeapps.live.com/op/embed.aspx?src=https%3A%2F%2F112ab0050.github.io%2FAI%25E8%25B3%2587%25E5%25AE%2589.pptx" title="深偽技術簡報"></iframe>
                             </div>
-                            <a href="./AI資安.pptx" download="AI資安.pptx" class="download-btn-blue">下載簡報</a>
+                            <a class="download-btn-blue" onclick="downloadAIpptx()">下載簡報</a>
                         </div>
                         <div class="youtube-container">
                             <div class="youtube-frame">
@@ -586,6 +586,23 @@
                 window.open('./pass.pdf', '_blank');
             }
         }
+
+        function downloadAIpptx() {
+            fetch('./AI資安.pptx')
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'AI資安.pptx';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => console.error('Download failed:', error));
+            }
+
     </script>
 </body>
 </html>
